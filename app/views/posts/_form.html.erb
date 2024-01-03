@@ -17,13 +17,13 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :body %>
-    <%= form.text_area :body, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :content %>
+    <%= form.rich_text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= f.label :published_at %>
-    <%= f.datetime_select :published_at, include_blank: true%>
+    <%= form.label :published_at %>
+    <%= form.datetime_select :published_at, include_blank: true%>
   </div>
 
   <div class="inline">
