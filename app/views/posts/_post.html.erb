@@ -2,6 +2,11 @@
   <p class="my-5">
     <strong class="block font-medium mb-1">Title:</strong>
     <%= post.title %>
+    <% if post.draft? %>
+        <div class="bg-red-300 p2 rounded"> Draft</div>
+    <% elsif post.scheduled? %>
+        <div class="bg-yellow-100 p2 rounded"> schedule</div>
+    <% end %>
   </p>
 
   <p class="my-5">
