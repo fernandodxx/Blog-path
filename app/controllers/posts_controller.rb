@@ -5,6 +5,9 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = user_signed_in? ? Post.sorted : Post.published.sorted
+    @pagy, @posts = pagy(@posts)
+  rescue Pagy::OverflowError
+    redirect_to root_path(page: 1)
   end
 
   # GET /posts/1 or /posts/1.json
