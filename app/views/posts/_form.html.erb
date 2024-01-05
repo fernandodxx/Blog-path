@@ -17,6 +17,19 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :cover_image %>
+    <% if post.cover_image.present? %>
+      <div id="<%= dom_id(post, :cover_image) %>">
+        <%= image_tag post.cover_image, class: "w-1/2"  %>
+        <%= link_to "Delete image", post_cover_image_path(post), 
+                      data: { turbo_method: :delete,
+                      turbo_confirm: "Are you sure?" } %>
+      </div>
+    <% end %>
+    <%= form.file_field :cover_image%>
+  </div>
+
+  <div class="my-5">
     <%= form.label :content %>
     <%= form.rich_text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>

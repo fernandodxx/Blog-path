@@ -1,6 +1,7 @@
 <div id="<%= dom_id post %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Title:</strong>
+    <%= image_tag post.cover_image if post.cover_image.present? %>
     <%= post.title %>
     <% if post.draft? %>
         <div class="bg-red-300 p2 rounded"> Draft</div>
