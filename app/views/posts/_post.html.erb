@@ -1,25 +1,30 @@
-<div id="<%= dom_id post %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= image_tag post.cover_image if post.cover_image.present? %>
-    <%= post.title %>
-    <% if post.draft? %>
-        <div class="bg-red-300 p2 rounded"> Draft</div>
-    <% elsif post.scheduled? %>
-        <div class="bg-yellow-100 p2 rounded"> schedule</div>
-    <% end %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Body:</strong>
-    <%= post.content %>
-  </p>
-
+<nav id="<%= dom_id post %>" class=" rounded-md p-3 shadow-lg px-8 border-l-4 border-black dark:border-white">
   <% if action_name != "show" %>
-    <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this post", edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+    </svg>
   <% end %>
 
+  <h1 class="font-bold text-2xl py-5 ">
+    <%= link_to post.title, post, class:"block"%>
+  </h1>
+
+  <% if action_name != "index" %>
+    <p class="">
+      <%= post.content %>
+    <p>
+  <% end %>
   
-</div>
+  <% if post.draft? %>
+      <div class="bg-red-300 p2 rounded"> Draft</div>
+  <% elsif post.scheduled? %>
+      <div class="bg-yellow-100 p2 rounded"> schedule</div>
+  <% end %>
+  
+  <% if user_signed_in? %>
+    <% if action_name != "show" %>
+      <%= link_to "Edit this post", edit_post_path(post) %>
+    <% end %>
+  <% end %>
+</nav>
+<br>
